@@ -7,11 +7,16 @@ function manipulateData(inputArray) {
   .then((data) => {
     return new Promise((resolve) => {
       setTimeout(() => {
-        const manipulatedArray = data.map((num) => (num % 2 === 0 ? num * 2 : num));
-        document.getElementById('output').innerText = `Final Result: [${manipulatedArray}]`;
-        resolve(manipulatedArray);
-      }, 2000);
+        const filteredArray = data.filter((num) => num % 2 === 0);
+        document.getElementById('output').innerText = `Filtered Result: [${filteredArray}]`;
+        resolve(filteredArray);
+      }, 1000); // Changed to 1000 milliseconds for the first promise
     });
+  })
+  .then((filteredArray) => {
+    const multipliedArray = filteredArray.map((num) => num * 2);
+    document.getElementById('output').innerText = `Final Result: [${multipliedArray}]`;
+    return multipliedArray;
   });
 }
 
